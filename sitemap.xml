@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://feedbulk.com/</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://feedbulk.com/img/logo-512.png</image:loc>
+      <image:title>벌크피드영농조합법인 로고</image:title>
+      <image:caption>경기도 이천시 백사면 조사료 생산 전문 영농조합</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://feedbulk.com/img/og-image.jpg</image:loc>
+      <image:title>벌크피드영농조합법인 - 2025 농림축산식품부 장관상 최우수상</image:title>
+      <image:caption>전국 사료작물 품질경연대회 최우수상 수상</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://feedbulk.com/img/logo-128.png</image:loc>
+      <image:title>벌크피드영농조합법인 로고 (소형)</image:title>
+    </image:image>
+  </url>
+</urlset>

@@ -1,0 +1,30 @@
+# ════════════════════════════════════════════════════════
+# robots.txt — 벌크피드영농조합법인 (feedbulk.com)
+# 모든 검색엔진 크롤러 허용 + 사이트맵 안내
+# ════════════════════════════════════════════════════════
+
+User-agent: *
+Allow: /
+
+# 네이버 검색 (Yeti)
+User-agent: Yeti
+Allow: /
+
+# 다음/카카오
+User-agent: Daum
+Allow: /
+User-agent: Daumoa
+Allow: /
+
+# 구글
+User-agent: Googlebot
+Allow: /
+User-agent: Googlebot-Image
+Allow: /img/
+
+# 빙
+User-agent: bingbot
+Allow: /
+
+# 사이트맵 위치
+Sitemap: https://feedbulk.com/sitemap.xml
