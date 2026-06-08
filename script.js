@@ -201,3 +201,54 @@ if (inquiryForm) {
     }
   });
 }
+
+// ─────────────────────────────────────
+// Hero 배경 슬라이드 (4초 크로스페이드, lazy 주입)
+// ─────────────────────────────────────
+(() => {
+  const wrap = document.getElementById('heroSlides');
+  if (!wrap) return;
+  const slides = Array.from(wrap.querySelectorAll('.hero-slide'));
+  if (slides.length < 2) return;
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return; // 모션 최소화 환경 → 첫 장 고정
+
+  // data-bg에 정의된 슬라이드 배경을 한 번만 주입(+이미지 프리로드)
+  const ensureBg = (slide) => {
+    const url = slide.dataset.bg;
+    if (!url) return;
+    const img = new Image();
+    img.onload = () => { slide.style.backgroundImage = `url('${url}')`; };
+    img.src = url;
+    slide.removeAttribute('data-bg');
+  };
+
+  let cur = slides.findIndex(s => s.classList.contains('is-active'));
+  if (cur < 0) cur = 0;
+
+  // 다음 장 미리 로드
+  ensureBg(slides[(cur + 1) % slides.length]);
+
+  const INTERVAL = 4000;
+  let timer = null;
+
+  const step = () => {
+    const next = (cur + 1) % slides.length;
+    slides[cur].classList.remove('is-active');
+    slides[next].classList.add('is-active');
+    cur = next;
+    // 그 다음 장 선주입
+    ensureBg(slides[(cur + 1) % slides.length]);
+  };
+
+  const start = () => { if (!timer) timer = setInterval(step, INTERVAL); };
+  const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+  // 탭 비활성 시 정지(불필요 페인트 절약)
+  document.addEventListener('visibilitychange', () => {
+    document.hidden ? stop() : start();
+  });
+
+  start();
+})();

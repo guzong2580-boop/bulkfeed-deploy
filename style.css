@@ -1840,16 +1840,25 @@ img { max-width: 100%; display: block; }
   .tl-card { padding: 28px 22px; }
 }
 
-/* ════════ HERO 사진 배경 ════════ */
-.hero-photo {
+/* ════════ HERO 사진 배경 슬라이드 (4초 크로스페이드) ════════ */
+.hero-slides {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background-image: url('img/hero.webp');
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
   background-size: cover;
   background-position: 70% 50%;
-  /* 사진 채도 살짝 낮춰 텍스트와 조화 */
   filter: saturate(0.96);
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  will-change: opacity;
+}
+.hero-slide.is-active { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide { transition: none; }
 }
 .hero-photo-wash {
   position: absolute;
@@ -1917,7 +1926,7 @@ img { max-width: 100%; display: block; }
 .gphoto:hover figcaption { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 880px) {
-  .hero-photo { background-position: 65% 50%; }
+  .hero-slide { background-position: 65% 50%; }
   .hero-photo-wash {
     /* 모바일: 텍스트가 사진 위에 단일 컬럼 → 워시 강화 */
     background:
