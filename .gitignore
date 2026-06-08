@@ -2,3 +2,7 @@
 Thumbs.db
 .vercel
 node_modules
+
+# 원본 사진 작업 폴더 (배포 제외)
+벌크피드/
+선별30/

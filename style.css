@@ -1839,3 +1839,104 @@ img { max-width: 100%; display: block; }
   }
   .tl-card { padding: 28px 22px; }
 }
+
+/* ════════ HERO 사진 배경 ════════ */
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: url('img/hero.webp');
+  background-size: cover;
+  background-position: 70% 50%;
+  /* 사진 채도 살짝 낮춰 텍스트와 조화 */
+  filter: saturate(0.96);
+}
+.hero-photo-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    /* 좌→우: 좌측 텍스트 영역 크림 불투명, 우측 사진 노출 */
+    linear-gradient(100deg,
+      rgba(247, 243, 232, 0.97) 0%,
+      rgba(247, 243, 232, 0.94) 28%,
+      rgba(247, 243, 232, 0.74) 52%,
+      rgba(247, 243, 232, 0.44) 76%,
+      rgba(247, 243, 232, 0.30) 100%),
+    /* 하단 페이드: 스탯 섹션과 자연 연결 */
+    linear-gradient(180deg,
+      rgba(247, 243, 232, 0.10) 55%,
+      rgba(247, 243, 232, 0.55) 82%,
+      var(--bg) 100%);
+}
+
+/* ════════ GALLERY (현장) ════════ */
+.section-gallery {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(125, 184, 126, 0.07) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 210px;
+  gap: 16px;
+  margin-top: 8px;
+}
+.gphoto {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  border: 1px solid var(--line);
+  background: var(--bg-3);
+}
+.gphoto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s var(--ease);
+}
+.gphoto-tall { grid-row: span 2; }
+.gphoto figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 28px 18px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #fff;
+  background: linear-gradient(180deg, transparent 0%, rgba(20, 40, 28, 0.78) 100%);
+  transform: translateY(4px);
+  opacity: 0.92;
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.gphoto:hover { box-shadow: var(--shadow-3); }
+.gphoto:hover img { transform: scale(1.06); }
+.gphoto:hover figcaption { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 880px) {
+  .hero-photo { background-position: 65% 50%; }
+  .hero-photo-wash {
+    /* 모바일: 텍스트가 사진 위에 단일 컬럼 → 워시 강화 */
+    background:
+      linear-gradient(180deg,
+        rgba(247, 243, 232, 0.93) 0%,
+        rgba(247, 243, 232, 0.88) 55%,
+        rgba(247, 243, 232, 0.95) 88%,
+        var(--bg) 100%);
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 160px;
+    gap: 12px;
+  }
+}
+@media (max-width: 540px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+  }
+  .gphoto-tall { grid-row: span 1; }
+}
